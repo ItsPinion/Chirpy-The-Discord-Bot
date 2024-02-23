@@ -2,8 +2,6 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { Client, Collection, Events, GatewayIntentBits } = require("discord.js");
 
-
-
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.cooldowns = new Collection();
@@ -77,14 +75,11 @@ client.on(Events.InteractionCreate, async (interaction) => {
   }
 });
 
-
-
 client.login(process.env.token);
 
-
-
-const http = require('http');
-http.createServer(function(a, b) {
-  b.end();
-}).listen(3000);
-
+const http = require("http");
+http
+  .createServer(function (a, b) {
+    b.end();
+  })
+  .listen(3000);

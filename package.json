@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "node deploy-commands.js",
-    "start": "node index.js",
+    "start": "nodemon",
     "dev": "node deploy-commands.js && node index.js"
   },
   "keywords": [],
@@ -14,12 +14,17 @@
   "license": "ISC",
   "dependencies": {
     "@discordjs/builders": "^1.7.0",
+    "@discordjs/rest": "^2.2.0",
     "@google/generative-ai": "^0.2.1",
+    "@libsql/client": "^0.5.1",
+    "discord-api-types": "^0.37.70",
     "discord.js": "^14.11.0",
-    "dotenv": "^16.3.1",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.29.4",
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
+    "drizzle-kit": "^0.20.14",
     "eslint": "^8.43.0",
     "nodemon": "^3.0.1"
   }
