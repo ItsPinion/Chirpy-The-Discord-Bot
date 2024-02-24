@@ -77,3 +77,9 @@ client.on(Events.InteractionCreate, async (interaction) => {
 
 client.login(process.env.DISCORD_BOT_TOKEN);
 
+const http = require("http");
+http
+  .createServer(function (a, b) {
+    b.end();
+  })
+  .listen(3000);
