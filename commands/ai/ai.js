@@ -6,7 +6,7 @@ const {
 } = require("@google/generative-ai");
 const wait = require("node:timers/promises").setTimeout;
 
-const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const generationConfig = {
   stopSequences: ["red"],
   maxOutputTokens: 500,

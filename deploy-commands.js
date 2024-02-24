@@ -24,7 +24,7 @@ for (const folder of commandFolders) {
   }
 }
 
-const rest = new REST().setToken(process.env.token);
+const rest = new REST().setToken(process.env.DISCORD_BOT_TOKEN);
 
 (async () => {
   try {
@@ -33,7 +33,7 @@ const rest = new REST().setToken(process.env.token);
     );
 
     const data = await rest.put(
-      Routes.applicationCommands(process.env.clientId),
+      Routes.applicationCommands(process.env.DISCORD_CLIENT_ID),
       { body: commands }
     );
 

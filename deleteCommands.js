@@ -6,8 +6,8 @@ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 
 // Get client ID and token from environment variables
-const clientId = process.env.clientId;
-const token = process.env.token;
+const clientID = process.env.DISCORD_CLIENT_ID;
+const token = process.env.DISCORD_BOT_TOKEN;
 
 // Initialize REST with your token
 const rest = new REST({ version: '9' }).setToken(token);
@@ -19,7 +19,7 @@ async function deleteCommands() {
 
         // Delete global commands
         await rest.put(
-            Routes.applicationCommands(clientId),
+            Routes.applicationCommands(clientID),
             { body: [] },
         );
 
@@ -31,7 +31,7 @@ async function deleteCommands() {
         // Delete guild-specific commands for each guild
         for (const guild of guilds) {
             await rest.put(
-                Routes.applicationGuildCommands(clientId, guild.id),
+                Routes.applicationGuildCommands(clientID, guild.id),
                 { body: [] },
             );
             console.log(`Successfully deleted commands for guild: ${guild.name} (${guild.id})`);
