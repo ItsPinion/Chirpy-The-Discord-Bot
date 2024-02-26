@@ -1,5 +1,5 @@
 const { updateBalance, updateMonthly } = require("../../api/update");
-const { readUserbyID } = require("../../api/get");
+const { getUserInfoByID } = require("../../api/get");
 const { checkMonthlyRewardClaim } = require("../../lib/rewardClaim");
 const { createUser } = require("../../api/post");
 const { SlashCommandBuilder } = require("discord.js");
@@ -19,7 +19,7 @@ module.exports = {
     let Info;
 
     try {
-      userExist = await readUserbyID(UserID);
+      userExist = await getUserInfoByID(UserID);
 
       !userExist[0] ? createUser(UserID) : (Info = userExist[0]);
     } catch (error) {

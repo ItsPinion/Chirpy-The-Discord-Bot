@@ -1,7 +1,7 @@
 const { db } = require("../db/db.js");
-const { usersSchema } = require("../db/schema.js");
+const { usersSchema, confessionChannelSchema } = require("../db/schema.js");
 const { and, eq, gt } = require("drizzle-orm");
-const { readUserbyID } = require("./get.js");
+const { getUserInfoByID } = require("./get.js");
 
 async function updateBalance(user_id, currentBalance = 0, add = 0) {
   await db
@@ -51,4 +51,22 @@ async function updateYearly(user_id, date = 0) {
   };
 }
 
-module.exports = { updateBalance, updateDaily, updateMonthly, updateYearly };
+async function updateConfessionChannel(server_id, channel_id) {
+  await db
+    .update(confessionChannelSchema)
+    .set({ server_id: server_id, channel_id: channel_id })
+    .where(eq(confessionChannelSchema.server_id, server_id));
+
+  return {
+    success: true,
+    message: "user detail[s] has been updated successfully",
+  };
+}
+
+module.exports = {
+  updateBalance,
+  updateDaily,
+  updateMonthly,
+  updateYearly,
+  updateConfessionChannel,
+};

@@ -1,4 +1,4 @@
-const { readUserbyID } = require("../../api/get");
+const { getUserInfoByID } = require("../../api/get");
 const { createUser } = require("../../api/post");
 const { SlashCommandBuilder } = require("discord.js");
 
@@ -24,7 +24,7 @@ module.exports = {
     let balance = 0;
 
     try {
-      Info = await readUserbyID(targetUser.id);
+      Info = await getUserInfoByID(targetUser.id);
 
       !Info ? createUser(targetUser.id) : (balance = Info[0].balance);
 

@@ -1,4 +1,4 @@
-const { readUserbyID } = require("../../api/get");
+const { getUserInfoByID } = require("../../api/get");
 const { createUser } = require("../../api/post");
 const { SlashCommandBuilder } = require("discord.js");
 const { updateBalance } = require("../../api/update");
@@ -32,8 +32,8 @@ module.exports = {
     let receiverBalance = 0;
 
     try {
-      userInfo = await readUserbyID(userID);
-      receiverInfo = await readUserbyID(receiverID);
+      userInfo = await getUserInfoByID(userID);
+      receiverInfo = await getUserInfoByID(receiverID);
 
       console.log(userID, receiverID, userInfo, receiverInfo);
 

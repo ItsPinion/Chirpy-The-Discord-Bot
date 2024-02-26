@@ -6,11 +6,13 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.cooldowns = new Collection();
 client.commands = new Collection();
-const foldersPath = path.join(__dirname, "commands");
-const commandFolders = fs.readdirSync(foldersPath);
+const commandFoldersPath = path.join(__dirname, "commands");
+const automationFilesPath = path.join(__dirname, "automation");
 
+// Handle command folders
+const commandFolders = fs.readdirSync(commandFoldersPath);
 for (const folder of commandFolders) {
-  const commandsPath = path.join(foldersPath, folder);
+  const commandsPath = path.join(commandFoldersPath, folder);
   const commandFiles = fs
     .readdirSync(commandsPath)
     .filter((file) => file.endsWith(".js"));
@@ -24,6 +26,22 @@ for (const folder of commandFolders) {
         `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`
       );
     }
+  }
+}
+
+// Handle automation files
+const automationFiles = fs
+  .readdirSync(automationFilesPath)
+  .filter((file) => file.endsWith(".js"));
+for (const file of automationFiles) {
+  const filePath = path.join(automationFilesPath, file);
+  const automation = require(filePath);
+  if ("setup" in automation) {
+    automation.setup(client);
+  } else {
+    console.log(
+      `[WARNING] The automation file at ${filePath} is missing a required "setup" function.`
+    );
   }
 }
 
@@ -46,14 +64,14 @@ client.on(Events.InteractionCreate, async (interaction) => {
 
   const now = Date.now();
   const timestamps = cooldowns.get(command.data.name);
-  const defaultCooldownDuration = 3;
-  const cooldownAmount = (command.cooldown ?? defaultCooldownDuration) * 1000;
+  const defaultCooldownDuration =  3;
+  const cooldownAmount = (command.cooldown ?? defaultCooldownDuration) *  1000;
 
   if (timestamps.has(interaction.user.id)) {
     const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount;
 
     if (now < expirationTime) {
-      const expiredTimestamp = Math.round(expirationTime / 1000);
+      const expiredTimestamp = Math.round(expirationTime /  1000);
       return interaction.reply({
         content: `Please wait, you are on a cooldown for \`${command.data.name}\`. You can use it again <t:${expiredTimestamp}:R>.`,
         ephemeral: true,
@@ -76,4 +94,3 @@ client.on(Events.InteractionCreate, async (interaction) => {
 });
 
 client.login(process.env.DISCORD_BOT_TOKEN);
-

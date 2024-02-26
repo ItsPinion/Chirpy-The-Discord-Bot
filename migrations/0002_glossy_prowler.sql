@@ -1,1 +1,0 @@
-ALTER TABLE `user` RENAME COLUMN `last_weekly` TO `last_yearly`;
