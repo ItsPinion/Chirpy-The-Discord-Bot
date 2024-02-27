@@ -11,6 +11,24 @@ async function executeCreate(interaction) {
   const userID = interaction.user.id;
   const serverId = interaction.guildId;
 
+  try {
+    const quality = await run(confession);
+    if (quality.toLocaleLowerCase().includes(false)) {
+      await interaction.editReply({
+        content: "Your confession is not appropriate.",
+        ephemeral: true,
+      });
+      return;
+    }
+  } catch (error) {
+    await interaction.editReply({
+      content: "Your confession is not appropriate.",
+      ephemeral: true,
+    });
+    console.error(error, "weeee");
+    return;
+  }
+
   const existingConfessions = await getConfessionsByUserID(userID, serverId);
 
   if (existingConfessions[0]) {
@@ -37,8 +55,7 @@ async function executeCreate(interaction) {
     const targetUserId = targetUser ? targetUser.id : null;
     await createConfession(userID, targetUserId, confession, serverId);
     await interaction.editReply({
-      content:
-        `Your confession has been submitted. It will be published in <#${confessionChannel[0].channel_id}> anonymously within  24 Hours :)`,
+      content: `Your confession has been submitted. It will be published in <#${confessionChannel[0].channel_id}> anonymously within  24 Hours :)`,
       ephemeral: true,
     });
   } else {

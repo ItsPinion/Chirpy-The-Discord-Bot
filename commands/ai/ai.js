@@ -4,7 +4,6 @@ const {
   HarmBlockThreshold,
   HarmCategory,
 } = require("@google/generative-ai");
-const wait = require("node:timers/promises").setTimeout;
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const generationConfig = {
@@ -15,7 +14,6 @@ const generationConfig = {
   topK: 16,
 };
 
-const a = "BLOCK_NONE";
 const safetySettings = [
   {
     category: HarmCategory.HARM_CATEGORY_HARASSMENT,

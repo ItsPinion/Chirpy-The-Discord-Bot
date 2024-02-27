@@ -9,17 +9,17 @@ async function executeChannel(interaction) {
   const alreadyExist = await getConfessionsChannelByServerID(serverId);
   console.log(alreadyExist);
 
-
-  
   if (!alreadyExist[0]) {
     await createConfessionChannel(serverId, channelID);
     await interaction.editReply({
       content: "Confession channel set successfully.",
+      ephemeral: true,
     });
   } else {
     await updateConfessionChannel(serverId, channelID);
     await interaction.editReply({
       content: "Confession channel updated successfully.",
+      ephemeral: true,
     });
   }
 }

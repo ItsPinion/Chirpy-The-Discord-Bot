@@ -8,6 +8,7 @@
     "build": "node deploy-commands.js",
     "start": "node index.js",
     "dev": "node deploy-commands.js && nodemon",
+    "allinone": "npm i && node deploy-commands.js && node index.js",
     "migrate": "npx drizzle-kit generate:sqlite"
   },
   "keywords": [],
@@ -22,6 +23,7 @@
     "discord.js": "^14.11.0",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.29.4",
+    "googleapis": "^133.0.0",
     "node-cron": "^3.0.3",
     "node-fetch": "^3.3.2"
   },
