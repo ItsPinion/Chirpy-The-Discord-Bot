@@ -1,14 +1,14 @@
 {
-  "name": "bot",
+  "name": "chirpy-with-ts",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node deploy-commands.js",
-    "start": "node index.js",
-    "dev": "node deploy-commands.js && nodemon",
-    "allinone": "npm i && node deploy-commands.js && node index.js",
+    "dev": "npx nodemon -e ts -x 'tsc; node .'",
+    "build": "tsc",
+    "start": "node .",
+    "reboot":"rm -rf dist",
+    "deploy": "node dist/deploy-commands.js",
     "migrate": "npx drizzle-kit generate:sqlite"
   },
   "keywords": [],
@@ -16,21 +16,25 @@
   "license": "ISC",
   "dependencies": {
     "@discordjs/builders": "^1.7.0",
-    "@discordjs/rest": "^2.2.0",
-    "@google/generative-ai": "^0.2.1",
-    "@libsql/client": "^0.5.1",
-    "discord-api-types": "^0.37.70",
-    "discord.js": "^14.11.0",
+    "@discordjs/rest": "^2.0.0",
+    "@google/generative-ai": "^0.3.1",
+    "@libsql/client": "^0.5.6",
+    "@types/node-fetch": "^2.6.11",
+    "chalk": "^5.3.0",
+    "content-checker": "^1.0.9",
+    "discord-api-types": "^0.37.75",
+    "discord.js": "^14.12.1",
     "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.29.4",
-    "googleapis": "^133.0.0",
+    "drizzle-orm": "^0.30.4",
+    "googleapis": "^134.0.0",
     "node-cron": "^3.0.3",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^2.7.0"
   },
   "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@types/node-cron": "^3.0.11",
     "drizzle-kit": "^0.20.14",
-    "eslint": "^8.43.0",
-    "nodemon": "^3.0.1"
-  },
-  "type": "commonjs"
+    "nodemon": "^3.1.0",
+    "tsx": "^4.7.1"
+  }
 }
