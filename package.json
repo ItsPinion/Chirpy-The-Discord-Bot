@@ -7,7 +7,7 @@
     "dev": "npx nodemon -e ts -x 'tsc; node .'",
     "build": "tsc",
     "start": "node .",
-    "reboot":"rm -rf dist",
+    "reboot": "rm -rf dist",
     "deploy": "node dist/deploy-commands.js",
     "migrate": "npx drizzle-kit generate:sqlite"
   },
@@ -28,7 +28,8 @@
     "drizzle-orm": "^0.30.4",
     "googleapis": "^134.0.0",
     "node-cron": "^3.0.3",
-    "node-fetch": "^2.7.0"
+    "node-fetch": "^2.7.0",
+    "typescript": "^5.4.3"
   },
   "devDependencies": {
     "@types/node": "^20.11.30",
