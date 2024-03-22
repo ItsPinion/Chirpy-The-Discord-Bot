@@ -5,10 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "npx nodemon -e ts -x 'tsc; node .'",
-    "build": "tsc",
+    "build": "tsc; node dist/deploy-commands.js",
     "start": "node .",
     "reboot": "rm -rf dist",
-    "deploy": "node dist/deploy-commands.js",
     "migrate": "npx drizzle-kit generate:sqlite"
   },
   "keywords": [],
