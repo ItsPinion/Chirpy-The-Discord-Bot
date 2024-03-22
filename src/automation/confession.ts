@@ -5,7 +5,7 @@ import { deleteConfession } from "../api/delete";
 
 module.exports = {
   setup: (client: Client) => {
-    cron.schedule("* * * * *", async () => {
+    cron.schedule("0 0 * * *", async () => {
       const allConfession = await getAllConfessions();
 
       allConfession.forEach(async (confession) => {
