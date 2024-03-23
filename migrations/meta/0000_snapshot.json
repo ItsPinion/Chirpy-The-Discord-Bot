@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "8e925e34-0d3f-4b1a-8034-0fc21b9a20d7",
+  "id": "96b81b12-98ae-4ce7-9bfc-79393105e5a1",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "confessionChannel": {
@@ -142,6 +142,36 @@
         "last_yearly": {
           "name": "last_yearly",
           "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "welcome": {
+      "name": "welcome",
+      "columns": {
+        "server_id": {
+          "name": "server_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "channel_id": {
+          "name": "channel_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "role_id": {
+          "name": "role_id",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false

@@ -27,3 +27,9 @@ export const confessionChannelSchema = sqliteTable("confessionChannel", {
   server_id: text("server_id").primaryKey(),
   channel_id: text("channel_id").notNull(),
 });
+
+export const welcomeSchema = sqliteTable("welcome", {
+  server_id: text("server_id").primaryKey(),
+  channel_id: text("channel_id"),
+  role_id: text("role_id")
+});

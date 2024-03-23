@@ -3,6 +3,7 @@ import {
   usersSchema,
   confessionSchema,
   confessionChannelSchema,
+  welcomeSchema,
 } from "../db/schema.js";
 import { and, eq, gt } from "drizzle-orm";
 
@@ -45,6 +46,20 @@ export async function createConfessionChannel(
   await db.insert(confessionChannelSchema).values({
     server_id: server_id,
     channel_id: channel_id,
+  });
+
+  return {
+    success: true,
+    message: "successfully created a new confession channel.",
+  };
+}
+
+
+export async function createWelcome(
+  server_id: string,
+): Promise<{ success: boolean; message: string }> {
+  await db.insert(welcomeSchema).values({
+    server_id: server_id,
   });
 
   return {

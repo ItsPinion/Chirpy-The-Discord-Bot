@@ -42,6 +42,4 @@ function sendMessage(
 
   channel
     .send(`For ${targetedUser},\n` + message)
-    .then(() => console.log("Good morning message sent successfully."))
-    .catch(console.error);
 }

@@ -2,11 +2,12 @@ import {
   confessionSchema,
   usersSchema,
   confessionChannelSchema,
+  welcomeSchema,
 } from "../db/schema.js";
 import { db } from "../db/db.js";
 import { and, eq, gt } from "drizzle-orm";
 
-export async function getUserInfoByID(user_id:string) {
+export async function getUserInfoByID(user_id: string) {
   const result = await db
     .select()
     .from(usersSchema)
@@ -15,7 +16,7 @@ export async function getUserInfoByID(user_id:string) {
   return result;
 }
 
-export async function getConfessionsByServer(server_id:string) {
+export async function getConfessionsByServer(server_id: string) {
   const result = await db
     .select()
     .from(confessionSchema)
@@ -24,7 +25,10 @@ export async function getConfessionsByServer(server_id:string) {
   return result;
 }
 
-export async function getConfessionsByUserID(user_id:string, server_id:string) {
+export async function getConfessionsByUserID(
+  user_id: string,
+  server_id: string
+) {
   const result = await db
     .select()
     .from(confessionSchema)
@@ -43,11 +47,20 @@ export async function getAllConfessions() {
   return result;
 }
 
-export async function getConfessionsChannelByServerID(server_id:string) {
+export async function getConfessionsChannelByServerID(server_id: string) {
   const result = await db
     .select()
     .from(confessionChannelSchema)
     .where(eq(confessionChannelSchema.server_id, server_id));
+
+  return result;
+}
+
+export async function getWelcomeInfoByServerID(server_id: string) {
+  const result = await db
+    .select()
+    .from(welcomeSchema)
+    .where(eq(welcomeSchema.server_id, server_id));
 
   return result;
 }

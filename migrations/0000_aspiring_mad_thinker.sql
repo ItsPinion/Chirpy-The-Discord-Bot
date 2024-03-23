@@ -25,3 +25,9 @@ CREATE TABLE `users` (
 	`last_monthly` integer,
 	`last_yearly` integer
 );
+--> statement-breakpoint
+CREATE TABLE `welcome` (
+	`server_id` text PRIMARY KEY NOT NULL,
+	`channel_id` text,
+	`role_id` text
+);

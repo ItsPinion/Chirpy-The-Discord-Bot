@@ -14,43 +14,63 @@ class MyClient extends Client {
   }
 }
 
-const client = new MyClient({ intents: [GatewayIntentBits.Guilds] });
+const client = new MyClient({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildInvites,
+    GatewayIntentBits.GuildScheduledEvents,
+    GatewayIntentBits.GuildMembers
+  ],
+});
 
 const commandFoldersPath = path.join(__dirname, "commands");
-const automationFilesPath = path.join(__dirname, "automation");
+const eventsFilesPath = path.join(__dirname, "events");
 
-const commandFolders = fs.readdirSync(commandFoldersPath);
-for (const folder of commandFolders) {
-  const commandsPath = path.join(commandFoldersPath, folder);
-  const commandFiles = fs
-    .readdirSync(commandsPath)
+try {
+  const commandFolders = fs.readdirSync(commandFoldersPath);
+  console.log(`Command folders: ${commandFolders}`);
+  for (const folder of commandFolders) {
+    const commandsPath = path.join(commandFoldersPath, folder);
+    const commandFiles = fs
+      .readdirSync(commandsPath)
+      .filter((file) => file.endsWith(".js"));
+    console.log(`Command files in ${folder}: ${commandFiles}`);
+    for (const file of commandFiles) {
+      const filePath = path.join(commandsPath, file);
+      const command = require(filePath);
+      if ("data" in command && "execute" in command) {
+        client.commands.set(command.data.name, command);
+      } else {
+        console.log(
+          `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`
+        );
+      }
+    }
+  }
+} catch (error) {
+  console.error("Error loading command files:", error);
+}
+
+try {
+  const eventsFiles = fs
+    .readdirSync(eventsFilesPath)
     .filter((file) => file.endsWith(".js"));
-  for (const file of commandFiles) {
-    const filePath = path.join(commandsPath, file);
-    const command = require(filePath);
-    if ("data" in command && "execute" in command) {
-      client.commands.set(command.data.name, command);
+  console.log(`events files: ${eventsFiles}`);
+  for (const file of eventsFiles) {
+    const filePath = path.join(eventsFilesPath, file);
+    const events = require(filePath);
+    if ("setup" in events) {
+      events.setup(client);
     } else {
       console.log(
-        `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`
+        `[WARNING] The events file at ${filePath} is missing a required "setup" function.`
       );
     }
   }
-}
-
-const automationFiles = fs
-  .readdirSync(automationFilesPath)
-  .filter((file) => file.endsWith(".js"));
-for (const file of automationFiles) {
-  const filePath = path.join(automationFilesPath, file);
-  const automation = require(filePath);
-  if ("setup" in automation) {
-    automation.setup(client);
-  } else {
-    console.log(
-      `[WARNING] The automation file at ${filePath} is missing a required "setup" function.`
-    );
-  }
+} catch (error) {
+  console.error("Error loading events files:", error);
 }
 
 client.once(Events.ClientReady, () => {

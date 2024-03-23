@@ -22,7 +22,7 @@ module.exports = {
 
     try {
       const joke = await fetchRandomDarkJoke();
-      await interaction.editReply(joke);
+      await interaction.editReply(`||${joke}||`);
     } catch (error) {
       console.error('There has been a problem with your fetch operation:', error);
       await interaction.editReply('Sorry, I couldn\'t fetch a joke right now.');

@@ -1,22 +1,23 @@
-import { SlashCommandBuilder } from 'discord.js';
-import { ChatInputCommandInteraction } from 'discord.js';
+import { SlashCommandBuilder } from "discord.js";
+import { ChatInputCommandInteraction } from "discord.js";
 
 async function fetchRandomImage(contentType: string): Promise<string> {
- const fetch = (await import('node-fetch')).default;
+  const fetch = (await import("node-fetch")).default;
 
- const response = await fetch(`https://nekos.pro/api/${contentType}`);
- if (!response.ok) {
+  const response = await fetch(`https://nekos.pro/api/${contentType}`);
+  if (!response.ok) {
     throw new Error("Network response was not ok");
- }
- const jokeText = await response.json();
- return jokeText.url;
+  }
+  const jokeText = await response.json();
+  return jokeText.url;
 }
 
 module.exports = {
- cooldown: 5,
- data: new SlashCommandBuilder()
+  cooldown: 5,
+  data: new SlashCommandBuilder()
     .setName("nsfw")
     .setDescription("Replies with a random NSFW pic!")
+    .setNSFW(true)
     .addStringOption((option) =>
       option
         .setName("category")
@@ -40,7 +41,7 @@ module.exports = {
           { name: "irl-random", value: "irl-random" }
         )
     ),
- async execute(interaction: ChatInputCommandInteraction) {
+  async execute(interaction: ChatInputCommandInteraction) {
     await interaction.deferReply();
 
     try {
@@ -57,5 +58,5 @@ module.exports = {
         "Get a brush and clean your filthy brain. 🤢"
       );
     }
- },
+  },
 };

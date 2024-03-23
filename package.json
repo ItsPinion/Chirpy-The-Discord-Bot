@@ -1,11 +1,12 @@
 {
-  "name": "chirpy-with-ts",
-  "version": "1.0.0",
-  "description": "",
+  "name": "chirpy-the-discord-bot",
+  "version": "0.4.0",
+  "description": "A all in one discord bot. It has AI, economy, confession, welcome message/role and many discord utilities.",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "npx nodemon -e ts -x 'tsc; node .'",
-    "build": "tsc; node dist/deploy-commands.js",
+    "dev": "npx nodemon -e ts -x 'npm run build; node .'",
+    "build": "tsc; npm run deploy",
+    "deploy": "node dist/deploy-commands.js",
     "start": "node .",
     "reboot": "rm -rf dist",
     "migrate": "npx drizzle-kit generate:sqlite"
