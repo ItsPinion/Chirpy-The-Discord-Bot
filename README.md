@@ -129,7 +129,6 @@ For support, please open an issue on GitHub or join our [Discord server](https:/
 - **[Advice Slip JSON API](https://api.adviceslip.com/)**: A free JSON API for over 10 million pieces of advice.
 - **[Chuck Norris Joks Api](https://api.chucknorris.io/)**: A free JSON API for hand curated Chuck Norris facts.
 - **[JokeAPI](https://v2.jokeapi.dev/)**: A free JSON API for uniformly and well formatted jokes.
-- **[Nekos.Pro](https://nekos.pro/)**: A free JSON API for moderated, filtered, & ToS friendly hentai.
 - **[Numbers API](http://numbersapi.com/)**: A free JSON API for facts about various numbers.
 ---
 
