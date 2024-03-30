@@ -19,8 +19,9 @@ export async function executeChannel(interaction: ChatInputCommandInteraction) {
 
   if (!alreadyExist[0]) {
     await createWelcome(serverId);
+    await interaction.editReply("Welcome channel set successfully.");
+  } else {
+    await updateWelcomeChannel(serverId, channelID);
+    await interaction.editReply("Welcome channel updated successfully.");
   }
-  
-  await updateWelcomeChannel(serverId, channelID);
-  await interaction.editReply("Welcome channel updated successfully.");
 }

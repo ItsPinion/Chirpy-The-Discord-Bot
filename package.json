@@ -5,14 +5,15 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "npx nodemon -e ts -x 'npm run build; node .'",
-    "build": "tsc; npm run deploy",
+    "build": "rm -rf dist; tsc; npm run deploy",
     "deploy": "node dist/deploy-commands.js",
     "start": "node .",
     "reboot": "rm -rf dist",
-    "migrate": "npx drizzle-kit generate:sqlite"
+    "db:migrate": "npx drizzle-kit generate:sqlite",
+    "db:push": "npx drizzle-kit push:sqlite"
   },
   "keywords": [],
-  "author": "",
+  "author": "ItsPinion",
   "license": "ISC",
   "dependencies": {
     "@discordjs/builders": "^1.7.0",

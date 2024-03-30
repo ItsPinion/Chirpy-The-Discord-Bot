@@ -1,11 +1,5 @@
-import {
-  SlashCommandBuilder,
-  GuildChannel,
-  PermissionsBitField,
-  GuildChannelType,
-  Channel,
-} from "discord.js";
-import { ChatInputCommandInteraction, TextChannel } from "discord.js";
+import { SlashCommandBuilder, PermissionsBitField } from "discord.js";
+import { ChatInputCommandInteraction } from "discord.js";
 import { executeChannel } from "./action/channel";
 import { executeCreate } from "./action/create";
 

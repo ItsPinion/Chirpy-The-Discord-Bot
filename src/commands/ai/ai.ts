@@ -1,4 +1,4 @@
-import { SlashCommandBuilder,ChatInputCommandInteraction } from "discord.js";
+import { SlashCommandBuilder, ChatInputCommandInteraction } from "discord.js";
 import {
   GoogleGenerativeAI,
   HarmBlockThreshold,
@@ -20,25 +20,23 @@ const generationConfig = {
 const safetySettings = [
   {
     category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-    threshold: HarmBlockThreshold.BLOCK_NONE,
+    threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
   },
   {
     category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-    threshold: HarmBlockThreshold.BLOCK_NONE,
+    threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
   },
   {
     category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-    threshold: HarmBlockThreshold.BLOCK_NONE,
+    threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
   },
   {
     category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-    threshold: HarmBlockThreshold.BLOCK_NONE,
+    threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
   },
 ];
 
-const model = genAI.getGenerativeModel(
-  { model: "gemini-pro" },
-);
+const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 const chat = model.startChat({
   history: [
@@ -70,7 +68,7 @@ module.exports = {
         .setDescription("Your question or statement")
         .setRequired(true)
     ),
-  async execute(interaction:ChatInputCommandInteraction) {
+  async execute(interaction: ChatInputCommandInteraction) {
     const targetUser = interaction.user;
 
     await interaction.deferReply();

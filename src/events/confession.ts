@@ -1,5 +1,5 @@
-import { Client, TextChannel } from "discord.js";
 import cron from "node-cron";
+import { Client, TextChannel } from "discord.js";
 import { getAllConfessions, getConfessionsChannelByServerID } from "../api/get";
 import { deleteConfession } from "../api/delete";
 

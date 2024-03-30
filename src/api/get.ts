@@ -3,9 +3,12 @@ import {
   usersSchema,
   confessionChannelSchema,
   welcomeSchema,
+  storySchema,
+  storyChannelSchema,
+  storyContributionSchema,
 } from "../db/schema.js";
 import { db } from "../db/db.js";
-import { and, eq, gt } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 
 export async function getUserInfoByID(user_id: string) {
   const result = await db
@@ -61,6 +64,34 @@ export async function getWelcomeInfoByServerID(server_id: string) {
     .select()
     .from(welcomeSchema)
     .where(eq(welcomeSchema.server_id, server_id));
+
+  return result;
+}
+
+export async function getStoryByStoryID(story_id: string) {
+  const result = await db
+    .select()
+    .from(storySchema)
+    .where(eq(storySchema.story_id, story_id));
+
+  return result;
+}
+
+export async function getStoryChannelByServerID(server_id: string) {
+  const result = await db
+    .select()
+    .from(storyChannelSchema)
+    .where(eq(storyChannelSchema.server_id, server_id));
+
+  return result;
+}
+
+
+export async function getStoryContributionByStoryID(story_id: string) {
+  const result = await db
+    .select()
+    .from(storyContributionSchema)
+    .where(eq(storyContributionSchema.story_id, story_id));
 
   return result;
 }

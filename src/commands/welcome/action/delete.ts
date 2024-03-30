@@ -1,6 +1,5 @@
 import { ChatInputCommandInteraction } from "discord.js";
 import { getWelcomeInfoByServerID } from "../../../api/get";
-import { createWelcome } from "../../../api/post";
 import { updateWelcomeChannel, updateWelcomeRole } from "../../../api/update";
 import { deleteWelcome } from "../../../api/delete";
 

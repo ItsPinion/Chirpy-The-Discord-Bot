@@ -3,7 +3,7 @@ import {
   getConfessionsByUserID,
   getConfessionsChannelByServerID,
 } from "../../../api/get";
-import { ChatInputCommandInteraction, User } from "discord.js";
+import { ChatInputCommandInteraction } from "discord.js";
 
 async function executeCreate(interaction: ChatInputCommandInteraction) {
   const confession = interaction.options.getString("confession");

@@ -3,9 +3,9 @@ import {
   usersSchema,
   confessionChannelSchema,
   welcomeSchema,
+  storyChannelSchema,
 } from "../db/schema.js";
-import { and, eq, gt } from "drizzle-orm";
-import { getUserInfoByID } from "./get.js";
+import { eq } from "drizzle-orm";
 
 export async function updateBalance(
   user_id: string,
@@ -14,7 +14,7 @@ export async function updateBalance(
 ): Promise<{ success: boolean; message: string }> {
   await db
     .update(usersSchema)
-    .set({ user_id: user_id, balance: Math.floor(currentBalance + add) })
+    .set({ user_id, balance: Math.floor(currentBalance + add) })
     .where(eq(usersSchema.user_id, user_id));
 
   return {
@@ -29,7 +29,7 @@ export async function updateDaily(
 ): Promise<{ success: boolean; message: string }> {
   await db
     .update(usersSchema)
-    .set({ user_id: user_id, daily: date })
+    .set({ user_id, daily: date })
     .where(eq(usersSchema.user_id, user_id));
 
   return {
@@ -44,7 +44,7 @@ export async function updateMonthly(
 ): Promise<{ success: boolean; message: string }> {
   await db
     .update(usersSchema)
-    .set({ user_id: user_id, monthly: date })
+    .set({ user_id, monthly: date })
     .where(eq(usersSchema.user_id, user_id));
 
   return {
@@ -59,7 +59,7 @@ export async function updateYearly(
 ): Promise<{ success: boolean; message: string }> {
   await db
     .update(usersSchema)
-    .set({ user_id: user_id, yearly: date })
+    .set({ user_id, yearly: date })
     .where(eq(usersSchema.user_id, user_id));
 
   return {
@@ -85,11 +85,11 @@ export async function updateConfessionChannel(
 
 export async function updateWelcomeChannel(
   server_id: string,
-  channel_id: string|null
+  channel_id: string | null
 ): Promise<{ success: boolean; message: string }> {
   await db
     .update(welcomeSchema)
-    .set({ server_id: server_id, channel_id: channel_id })
+    .set({ server_id, channel_id })
     .where(eq(welcomeSchema.server_id, server_id));
 
   return {
@@ -100,12 +100,27 @@ export async function updateWelcomeChannel(
 
 export async function updateWelcomeRole(
   server_id: string,
-  role_id: string|null
+  role_id: string | null
 ): Promise<{ success: boolean; message: string }> {
   await db
     .update(welcomeSchema)
-    .set({ server_id: server_id, role_id: role_id })
+    .set({ server_id, role_id })
     .where(eq(welcomeSchema.server_id, server_id));
+
+  return {
+    success: true,
+    message: "user detail[s] has been updated successfully",
+  };
+}
+
+export async function updateStoryChannel(
+  server_id: string,
+  channel_id: string
+): Promise<{ success: boolean; message: string }> {
+  await db
+    .update(storyChannelSchema)
+    .set({ channel_id })
+    .where(eq(storyChannelSchema.server_id, server_id));
 
   return {
     success: true,

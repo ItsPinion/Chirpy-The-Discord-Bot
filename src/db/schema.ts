@@ -16,13 +16,6 @@ export const confessionSchema = sqliteTable("confession", {
   server_id: text("server_id").notNull(),
 });
 
-export const confessionResponsesSchema = sqliteTable("confessionResponses", {
-  response_id: integer("response_id").primaryKey(),
-  message_id: integer("message_id").notNull(),
-  content: text("content").notNull(),
-  response_time: integer("response_time").notNull(),
-});
-
 export const confessionChannelSchema = sqliteTable("confessionChannel", {
   server_id: text("server_id").primaryKey(),
   channel_id: text("channel_id").notNull(),
@@ -31,5 +24,25 @@ export const confessionChannelSchema = sqliteTable("confessionChannel", {
 export const welcomeSchema = sqliteTable("welcome", {
   server_id: text("server_id").primaryKey(),
   channel_id: text("channel_id"),
-  role_id: text("role_id")
+  role_id: text("role_id"),
+});
+
+export const storySchema = sqliteTable("storys", {
+  story_id: text("story_id").primaryKey(),
+  title: text("title").notNull(),
+  created_at: integer("created_at").notNull(),
+  created_by: text("created_by").notNull(),
+});
+
+export const storyContributionSchema = sqliteTable("storyContributions", {
+  contribution_id: integer("contribution_id").primaryKey(),
+  story_id: text("story_id").notNull(),
+  contributor_id: text("contributor_id").notNull(),
+  content: text("content").notNull(),
+  contributed_at: integer("contributed_at").notNull(),
+});
+
+export const storyChannelSchema = sqliteTable("storyChannels", {
+  server_id: text("server_id").primaryKey(),
+  channel_id: text("channel_id").notNull(),
 });

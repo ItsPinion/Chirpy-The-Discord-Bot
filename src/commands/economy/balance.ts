@@ -1,7 +1,7 @@
 import { getUserInfoByID } from "../../api/get";
 import { createUser } from "../../api/post";
 import { SlashCommandBuilder } from "discord.js";
-import { CommandInteraction, User } from 'discord.js';
+import { CommandInteraction } from 'discord.js';
 
 const message = "```\nI am under maintenance 🚧\n```";
 module.exports = {

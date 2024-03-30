@@ -42,6 +42,10 @@ try {
       const command = require(filePath);
       if ("data" in command && "execute" in command) {
         client.commands.set(command.data.name, command);
+
+        if (!client.cooldowns.has(command.data.name)) {
+          client.cooldowns.set(command.data.name, new Collection());
+        }
       } else {
         console.log(
           `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`
@@ -82,6 +86,37 @@ client.on(Events.InteractionCreate, async (interaction) => {
 
   const command = client.commands.get(interaction.commandName);
   if (!command) return;
+
+  if (command.cooldown) {
+    let timestamps = client.cooldowns.get(command.data.name);
+    if (!timestamps) {
+      timestamps = new Collection();
+      client.cooldowns.set(command.data.name, timestamps);
+    }
+
+    const cooldownAmount = (command.cooldown || 3) * 1000;
+
+    if (timestamps!.has(interaction.user.id)) {
+      const expirationTime =
+        timestamps!.get(interaction.user.id)! + cooldownAmount;
+
+      if (Date.now() < expirationTime) {
+        const timeLeft = (expirationTime - Date.now()) / 1000;
+        await interaction.reply({
+          content: `Please wait \`${timeLeft.toFixed(
+            2
+          )}\` more second(s) before reusing the \`${
+            command.data.name
+          }\` command.`,
+          ephemeral: true,
+        });
+        return;
+      }
+    }
+
+    timestamps!.set(interaction.user.id, Date.now());
+    setTimeout(() => timestamps!.delete(interaction.user.id), cooldownAmount);
+  }
 
   try {
     await command.execute(interaction);

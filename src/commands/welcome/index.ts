@@ -1,13 +1,9 @@
 import {
   SlashCommandBuilder,
-  GuildChannel,
-  PermissionsBitField,
-  GuildChannelType,
-  Channel,
   PermissionFlagsBits,
   ChannelType,
 } from "discord.js";
-import { ChatInputCommandInteraction, TextChannel } from "discord.js";
+import { ChatInputCommandInteraction } from "discord.js";
 import { executeChannel } from "./action/channel";
 import { executeRole } from "./action/role";
 import { executeDelete } from "./action/delete";
