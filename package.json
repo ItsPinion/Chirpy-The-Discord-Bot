@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "npx nodemon -e ts -x 'npm run build; node .'",
-    "build": "rm -rf dist; tsc; npm run deploy",
+    "build": "tsc; npm run deploy",
     "deploy": "node dist/deploy-commands.js",
     "start": "node .",
     "reboot": "rm -rf dist",
