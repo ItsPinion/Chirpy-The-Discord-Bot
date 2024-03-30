@@ -4,7 +4,7 @@
 
 ## Version
 
-![Version](https://img.shields.io/badge/Version-0.4.0-purple.svg)
+![Version](https://img.shields.io/badge/Version-0.5.0-purple.svg)
 
 ## Description
 
@@ -16,7 +16,7 @@ Welcome to the my Discord Bot Project named chirpy, a comprehensive Discord bot 
 - **Dynamic Command Handling**: Dynamically loads commands from the `commands` directory, supporting subcommands, cooldowns, and more.
 - **Event-Driven Programming**: Automatically registers event listeners from the `events` directory, ensuring seamless integration with Discord's API.
 - **API Integration**: Fetches data from external APIs for a wide range of commands, enhancing user experience.
-- **Confession**: Facilitates anonymous confessions fostering community engagement.
+- **Confession and Story telling**: Facilitates anonymous confessions and cooperative storytelling for fostering community engagement.
 - **Welcome System**: Customizable welcome messages and roles for new members, enhancing the onboarding experience.
 - **Modular Design**: Easily extendable, allowing for the addition of new commands and events as needed.
 - **Database Integration**: Utilizes Drizzle ORM for database operations, supporting SQLite migrations and pushes.
@@ -37,6 +37,9 @@ Welcome to the my Discord Bot Project named chirpy, a comprehensive Discord bot 
 - **/welcome**: Manage welcome channel and role
   - **channel**: Set or update the channel dedicated for welcoming members
   - **role**: Set or update the role dedicated for new members
+- **/story**: Create story with the help of everyone
+  - **channel**: Set or update the channel dedicated for storys
+  - **start**: Start a new story.
 
 
 ## Environment Variables
