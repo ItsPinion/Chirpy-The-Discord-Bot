@@ -1,6 +1,7 @@
 # Chirpy The Discord Bot
 
 ![Discord Bot Project](https://i.ibb.co/k4nxjyK/a.png)
+![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 ## Version
 
@@ -103,7 +104,6 @@ We welcome contributions from the community! Please read the [contributing guide
 
 This project is licensed under the ISC License. See the [LICENSE](LICENSE) file for details.
 
-![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 ---
 
@@ -129,14 +129,7 @@ For support, please open an issue on GitHub or join our [Discord server](https:/
 - **[Advice Slip JSON API](https://api.adviceslip.com/)**: A free JSON API for over 10 million pieces of advice.
 - **[Chuck Norris Joks Api](https://api.chucknorris.io/)**: A free JSON API for hand curated Chuck Norris facts.
 - **[JokeAPI](https://v2.jokeapi.dev/)**: A free JSON API for uniformly and well formatted jokes.
-- **[Numbers API](http://numbersapi.com/)**: A free JSON API for facts about various numbers.
----
-
-## Version
-
-![Version](https://img.shields.io/badge/Version-0.4.0-green.svg)
-
-This README is designed to showcase the Chirpy Discord Bot Project as a comprehensive and innovative Discord bot solution. If you have any suggestions or additional features you'd like to see, please let me know!
+- **[Numbers API](http://numbersapi.com/)**: A free JSON API for
 
 ---
 
