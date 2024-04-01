@@ -1,10 +1,10 @@
 # Chirpy The Discord Bot
 
 ![Discord Bot Project](https://i.ibb.co/k4nxjyK/a.png)
-![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 ## Version
 
+![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Version](https://img.shields.io/badge/Version-0.5.0-purple.svg)
 
 ## Description
